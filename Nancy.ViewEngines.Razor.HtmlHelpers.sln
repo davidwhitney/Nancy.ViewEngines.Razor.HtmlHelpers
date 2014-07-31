@@ -12,6 +12,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{3026BE
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nancy.ViewEngines.Razor.HtmlHelpers.TestApp", "Nancy.ViewEngines.Razor.HtmlHelpers.TestApp\Nancy.ViewEngines.Razor.HtmlHelpers.TestApp.csproj", "{31016DA2-B472-4BB1-9A0C-1D24ED2CFC8B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,6 +24,10 @@ Global
 		{7499A582-DA5A-4322-829B-50ED6BDC6845}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7499A582-DA5A-4322-829B-50ED6BDC6845}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7499A582-DA5A-4322-829B-50ED6BDC6845}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31016DA2-B472-4BB1-9A0C-1D24ED2CFC8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31016DA2-B472-4BB1-9A0C-1D24ED2CFC8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31016DA2-B472-4BB1-9A0C-1D24ED2CFC8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31016DA2-B472-4BB1-9A0C-1D24ED2CFC8B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -7,11 +7,19 @@ namespace Nancy.ViewEngines.Razor.HtmlHelpers
 {
     public static class HtmlHelperInputExtensions
     {
-        public static IHtmlString TextBoxFor<TModel, TProperty>(this HtmlHelpers<TModel> helper, Expression<Func<TModel, TProperty>> expression, object htmlAttributes = null)
+        public static IHtmlString TextBoxFor<TModel, TProperty>(this HtmlHelpers<TModel> helper, Expression<Func<TModel, TProperty>> expression)
         {
-            var name = ExpressionHelper.GetExpressionText(expression);
-            var value = expression.Compile()(helper.Model);
-            return TextBox(helper, name, value, htmlAttributes);
+            return TextBox(helper, ExpressionHelper.GetExpressionText(expression), expression.Compile()(helper.Model), null);
+        }
+
+        public static IHtmlString TextBoxFor<TModel, TProperty>(this HtmlHelpers<TModel> helper, Expression<Func<TModel, TProperty>> expression, object htmlAttributes)
+        {
+            return TextBox(helper, ExpressionHelper.GetExpressionText(expression), expression.Compile()(helper.Model), htmlAttributes);
+        }
+
+        public static IHtmlString TextBoxFor<TModel, TProperty>(this HtmlHelpers<TModel> helper, Expression<Func<TModel, TProperty>> expression, IDictionary<string, object> htmlAttributes)
+        {
+            return TextBox(helper, ExpressionHelper.GetExpressionText(expression), expression.Compile()(helper.Model), TypeHelper.ObjectToDictionary(htmlAttributes));
         }
 
         public static IHtmlString TextBox<TModel>(this HtmlHelpers<TModel> helper, string name)
