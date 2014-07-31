@@ -7,6 +7,8 @@ This is going to be a little rough around the edges for awhile - I've cleved the
 
 Mostly here to remove some of the friction of binding up UI models with magic strings - the helpers along wth Expressions over the models help refactoring, and removed a good deal of frustraition from a project I'm working on. I'm now going back and "completing the job".
 
+Due to the hack-and-slash port of this code there aren't any tests right now - I'll be working on that shortly - right now, it kind of "just about works" - but might be useful to people.
+
 # Getting started
 
 Add:
@@ -25,6 +27,7 @@ To render a TextBox with valid Ids and values.
 
 * Html.InputThing("stringName", "value") string helpers for all common form inputs
 * Html.InputThing(x=>x.MyProperty) Expression helpers for all common form inputs
+* Something that resembles tests
 * Better docs
 * Model state validation (currently entirely removed)
 
