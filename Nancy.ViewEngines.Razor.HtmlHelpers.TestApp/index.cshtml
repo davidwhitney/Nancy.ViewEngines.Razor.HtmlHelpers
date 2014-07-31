@@ -1,4 +1,5 @@
-﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<Nancy.ViewEngines.Razor.HtmlHelpers.TestApp.Model>
+﻿@using Nancy.ViewEngines.Razor.HtmlHelpers
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<Nancy.ViewEngines.Razor.HtmlHelpers.TestApp.Model>
 @{
     ViewBag.Title = "Home";
 }
@@ -6,3 +7,15 @@
 Hello world.
 
 
+<h1>TextBoxFor</h1>
+
+@Html.TextBoxFor(x=>x.AString)
+@Html.TextBoxFor(x=>x.ABool)
+@Html.TextBoxFor(x=>x.AnInt)
+@Html.TextBoxFor(x=>x.EnumerableInts)
+@Html.TextBoxFor(x=>x.ListOfStrings)
+@Html.TextBoxFor(x=>x.NullableInt)
+
+@Html.TextBoxFor(x => x.AString, new { myAttribute = "isAwesome" })
+
+<hr />
