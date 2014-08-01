@@ -49,4 +49,15 @@ Hello world.
 
 <hr />
 
+<h1>TextAreaFor</h1>
+
+@Html.TextAreaFor(x => x.AString)
+      
+@Html.TextAreaFor(x => x.AString, new { myAttribute = "isAwesome" })
+@Html.TextArea("TextAreaFor", "TBValue")
+
+<hr />
+
+<h1>CheckBoxFor</h1>
+
 @Html.CheckBox("CheckBoxName")

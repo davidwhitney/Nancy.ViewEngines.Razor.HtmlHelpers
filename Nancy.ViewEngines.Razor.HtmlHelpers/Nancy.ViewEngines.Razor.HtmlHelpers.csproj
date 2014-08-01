@@ -51,6 +51,7 @@
     <Compile Include="HtmlHelperInputExtensions.cs" />
     <Compile Include="HtmlHelpersCheckBoxExtensions.cs" />
     <Compile Include="CleanRoomImplementationsOfMvcBits\HtmlString.cs" />
+    <Compile Include="HtmlHelpersTextAreaExtensions.cs" />
     <Compile Include="MvcBits\TypeHelper.cs" />
     <Compile Include="MetaModelBuilder.cs" />
     <Compile Include="MvcBits\ModelState.cs" />
