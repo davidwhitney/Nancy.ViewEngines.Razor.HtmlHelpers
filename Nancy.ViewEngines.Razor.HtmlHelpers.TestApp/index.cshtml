@@ -17,5 +17,36 @@ Hello world.
 @Html.TextBoxFor(x=>x.NullableInt)
 
 @Html.TextBoxFor(x => x.AString, new { myAttribute = "isAwesome" })
+@Html.TextBox("TextBoxName", "TBValue")
 
 <hr />
+
+<h1>Hidden (view source!)</h1>
+
+@Html.HiddenFor(x => x.AString)
+@Html.HiddenFor(x => x.ABool)
+@Html.HiddenFor(x => x.AnInt)
+@Html.HiddenFor(x => x.EnumerableInts)
+@Html.HiddenFor(x => x.ListOfStrings)
+@Html.HiddenFor(x => x.NullableInt)
+
+@Html.HiddenFor(x => x.AString, new { myAttribute = "isAwesome" })
+@Html.Hidden("HiddenTextBoxName", "TBValue")
+
+<hr />
+
+<h1>TextBoxFor</h1>
+
+@Html.PasswordFor(x => x.AString)
+@Html.PasswordFor(x => x.ABool)
+@Html.PasswordFor(x => x.AnInt)
+@Html.PasswordFor(x => x.EnumerableInts)
+@Html.PasswordFor(x => x.ListOfStrings)
+@Html.PasswordFor(x => x.NullableInt)
+      
+@Html.PasswordFor(x => x.AString, new { myAttribute = "isAwesome" })
+@Html.Password("PasswordTextBoxName", "TBValue")
+
+<hr />
+
+@Html.CheckBox("CheckBoxName")

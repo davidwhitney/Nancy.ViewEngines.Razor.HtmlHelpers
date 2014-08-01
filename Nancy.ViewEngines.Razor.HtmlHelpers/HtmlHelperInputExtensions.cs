@@ -52,6 +52,21 @@ namespace Nancy.ViewEngines.Razor.HtmlHelpers
             return BuildInputField(name, InputType.Text, value, true, htmlAttributes);
         }
 
+        public static IHtmlString HiddenFor<TModel, TProperty>(this HtmlHelpers<TModel> helper, Expression<Func<TModel, TProperty>> expression)
+        {
+            return Hidden(helper, ExpressionHelper.GetExpressionText(expression), expression.Compile()(helper.Model), null);
+        }
+
+        public static IHtmlString HiddenFor<TModel, TProperty>(this HtmlHelpers<TModel> helper, Expression<Func<TModel, TProperty>> expression, object htmlAttributes)
+        {
+            return Hidden(helper, ExpressionHelper.GetExpressionText(expression), expression.Compile()(helper.Model), htmlAttributes);
+        }
+
+        public static IHtmlString HiddenFor<TModel, TProperty>(this HtmlHelpers<TModel> helper, Expression<Func<TModel, TProperty>> expression, IDictionary<string, object> htmlAttributes)
+        {
+            return Hidden(helper, ExpressionHelper.GetExpressionText(expression), expression.Compile()(helper.Model), TypeHelper.ObjectToDictionary(htmlAttributes));
+        }
+
         public static IHtmlString Hidden<TModel>(this HtmlHelpers<TModel> helper, string name)
         {
             if (String.IsNullOrEmpty(name))
@@ -97,6 +112,21 @@ namespace Nancy.ViewEngines.Razor.HtmlHelpers
             }
 
             return value;
+        }
+
+        public static IHtmlString PasswordFor<TModel, TProperty>(this HtmlHelpers<TModel> helper, Expression<Func<TModel, TProperty>> expression)
+        {
+            return Password(helper, ExpressionHelper.GetExpressionText(expression), expression.Compile()(helper.Model), null);
+        }
+
+        public static IHtmlString PasswordFor<TModel, TProperty>(this HtmlHelpers<TModel> helper, Expression<Func<TModel, TProperty>> expression, object htmlAttributes)
+        {
+            return Password(helper, ExpressionHelper.GetExpressionText(expression), expression.Compile()(helper.Model), htmlAttributes);
+        }
+
+        public static IHtmlString PasswordFor<TModel, TProperty>(this HtmlHelpers<TModel> helper, Expression<Func<TModel, TProperty>> expression, IDictionary<string, object> htmlAttributes)
+        {
+            return Password(helper, ExpressionHelper.GetExpressionText(expression), expression.Compile()(helper.Model), TypeHelper.ObjectToDictionary(htmlAttributes));
         }
 
         public static IHtmlString Password<TModel>(this HtmlHelpers<TModel> helper, string name)
