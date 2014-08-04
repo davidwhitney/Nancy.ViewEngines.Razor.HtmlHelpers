@@ -61,6 +61,10 @@ Hello world.
 <h1>CheckBoxFor</h1>
 
 @Html.CheckBox("CheckBoxName")
+@Html.CheckBoxFor(x=>x.ABool)
+@Html.CheckBoxFor(x=>x.ABool, true)
+@Html.CheckBoxFor(x=>x.ABool, false)
+@Html.CheckBoxFor(x=>x.ABool, true, new { myAttribute = "isAwesome" })
 
 <hr/>
 

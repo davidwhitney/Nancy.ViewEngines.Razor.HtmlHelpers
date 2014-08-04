@@ -1,11 +1,41 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Net.Mime;
+using System.Linq.Expressions;
 
 namespace Nancy.ViewEngines.Razor.HtmlHelpers
 {
     public static class HtmlHelpersCheckBoxExtensions
     {
+        public static IHtmlString CheckBoxFor<TModel, TProperty>(this HtmlHelpers<TModel> helper, Expression<Func<TModel, TProperty>> expression)
+        {
+            return CheckBox(helper, ExpressionHelper.GetExpressionText(expression));
+        }
+
+        public static IHtmlString CheckBoxFor<TModel, TProperty>(this HtmlHelpers<TModel> helper, Expression<Func<TModel, TProperty>> expression, bool isChecked)
+        {
+            return CheckBox(helper, ExpressionHelper.GetExpressionText(expression), isChecked);
+        }
+
+        public static IHtmlString CheckBoxFor<TModel, TProperty>(this HtmlHelpers<TModel> helper, Expression<Func<TModel, TProperty>> expression, bool isChecked, object htmlAttributes)
+        {
+            return CheckBox(helper, ExpressionHelper.GetExpressionText(expression), isChecked, htmlAttributes);
+        }
+
+        public static IHtmlString CheckBoxFor<TModel, TProperty>(this HtmlHelpers<TModel> helper, Expression<Func<TModel, TProperty>> expression, object htmlAttributes)
+        {
+            return CheckBox(helper, ExpressionHelper.GetExpressionText(expression), htmlAttributes);
+        }
+
+        public static IHtmlString CheckBoxFor<TModel, TProperty>(this HtmlHelpers<TModel> helper, Expression<Func<TModel, TProperty>> expression, IDictionary<string, object> htmlAttributes)
+        {
+            return CheckBox(helper, ExpressionHelper.GetExpressionText(expression), TypeHelper.ObjectToDictionary(htmlAttributes));
+        }
+
+        public static IHtmlString CheckBoxFor<TModel, TProperty>(this HtmlHelpers<TModel> helper, Expression<Func<TModel, TProperty>> expression, bool isChecked, IDictionary<string, object> htmlAttributes)
+        {
+            return CheckBox(helper, ExpressionHelper.GetExpressionText(expression), isChecked, TypeHelper.ObjectToDictionary(htmlAttributes));
+        }
+
         public static IHtmlString CheckBox<TModel>(this HtmlHelpers<TModel> helper, string name)
         {
             return CheckBox(helper, name, null);
