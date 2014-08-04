@@ -84,12 +84,12 @@ namespace Nancy.ViewEngines.Razor.HtmlHelpers
                 return null;
             }
 
-            StringBuilder sb = new StringBuilder(originalId.Length);
+            var sb = new StringBuilder(originalId.Length);
             sb.Append(firstChar);
 
-            for (int i = 1; i < originalId.Length; i++)
+            for (var i = 1; i < originalId.Length; i++)
             {
-                char thisChar = originalId[i];
+                var thisChar = originalId[i];
                 if (Html401IdUtil.IsValidIdCharacter(thisChar))
                 {
                     sb.Append(thisChar);
@@ -105,37 +105,37 @@ namespace Nancy.ViewEngines.Razor.HtmlHelpers
 
         public void GenerateId(string name)
         {
-            if (!Attributes.ContainsKey("id"))
+            if (Attributes.ContainsKey("id"))
             {
-                string sanitizedId = CreateSanitizedId(name, IdAttributeDotReplacement);
-                if (!String.IsNullOrEmpty(sanitizedId))
-                {
-                    Attributes["id"] = sanitizedId;
-                }
+                return;
             }
+
+            var sanitizedId = CreateSanitizedId(name, IdAttributeDotReplacement);
+            if (String.IsNullOrEmpty(sanitizedId))
+            {
+                return;
+            }
+
+            Attributes["id"] = sanitizedId;
         }
 
         private void AppendAttributes(StringBuilder sb)
         {
             foreach (var attribute in Attributes)
             {
-                string key = attribute.Key;
+                var key = attribute.Key;
                 if (String.Equals(key, "id", StringComparison.Ordinal /* case-sensitive */) && String.IsNullOrEmpty(attribute.Value))
                 {
                     continue; // DevDiv Bugs #227595: don't output empty IDs
                 }
-                string value = HttpUtility.HtmlAttributeEncode(attribute.Value);
-                sb.Append(' ')
-                    .Append(key)
-                    .Append("=\"")
-                    .Append(value)
-                    .Append('"');
+                var value = HttpUtility.HtmlAttributeEncode(attribute.Value);
+                sb.Append(' ').Append(key).Append("=\"").Append(value).Append('"');
             }
         }
 
         public void MergeAttribute(string key, string value)
         {
-            MergeAttribute(key, value, replaceExisting: false);
+            MergeAttribute(key, value, false);
         }
 
         public void MergeAttribute(string key, string value, bool replaceExisting)
@@ -153,19 +153,18 @@ namespace Nancy.ViewEngines.Razor.HtmlHelpers
 
         public void MergeAttributes<TKey, TValue>(IDictionary<TKey, TValue> attributes)
         {
-            MergeAttributes(attributes, replaceExisting: false);
+            MergeAttributes(attributes, false);
         }
 
         public void MergeAttributes<TKey, TValue>(IDictionary<TKey, TValue> attributes, bool replaceExisting)
         {
-            if (attributes != null)
+            if (attributes == null) return;
+
+            foreach (var entry in attributes)
             {
-                foreach (var entry in attributes)
-                {
-                    string key = Convert.ToString(entry.Key, CultureInfo.InvariantCulture);
-                    string value = Convert.ToString(entry.Value, CultureInfo.InvariantCulture);
-                    MergeAttribute(key, value, replaceExisting);
-                }
+                var key = Convert.ToString(entry.Key, CultureInfo.InvariantCulture);
+                var value = Convert.ToString(entry.Value, CultureInfo.InvariantCulture);
+                MergeAttribute(key, value, replaceExisting);
             }
         }
 
@@ -186,7 +185,7 @@ namespace Nancy.ViewEngines.Razor.HtmlHelpers
 
         public string ToString(TagRenderMode renderMode)
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             switch (renderMode)
             {
                 case TagRenderMode.StartTag:

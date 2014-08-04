@@ -50,20 +50,17 @@
   <ItemGroup>
     <Compile Include="HtmlHelperInputExtensions.cs" />
     <Compile Include="HtmlHelpersCheckBoxExtensions.cs" />
-    <Compile Include="CleanRoomImplementationsOfMvcBits\HtmlString.cs" />
+    <Compile Include="HtmlString.cs" />
     <Compile Include="HtmlHelpersLabelExtensions.cs" />
     <Compile Include="HtmlHelpersTextAreaExtensions.cs" />
     <Compile Include="MvcBits\TypeHelper.cs" />
-    <Compile Include="MetaModelBuilder.cs" />
-    <Compile Include="MvcBits\ModelState.cs" />
-    <Compile Include="MvcBits\ModelStateDictionary.cs" />
     <Compile Include="MvcBits\InputType.cs" />
     <Compile Include="MvcBits\CachedExpressionCompiler.cs" />
     <Compile Include="MvcBits\ExpressionHelper.cs" />
-    <Compile Include="CleanRoomImplementationsOfMvcBits\ModelMetadata.cs" />
+    <Compile Include="ModelMetadata.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MvcBits\TagBuilder.cs" />
-    <Compile Include="MvcBits\RouteValueDictionary.cs" />
+    <Compile Include="RouteValueDictionary.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

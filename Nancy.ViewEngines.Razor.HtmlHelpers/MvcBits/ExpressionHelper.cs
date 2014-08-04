@@ -20,41 +20,32 @@ namespace Nancy.ViewEngines.Razor.HtmlHelpers
         public static string GetExpressionText(LambdaExpression expression)
         {
             // Split apart the expression string for property/field accessors to create its name
-            Stack<string> nameParts = new Stack<string>();
-            Expression part = expression.Body;
+            var nameParts = new Stack<string>();
+            var part = expression.Body;
 
             while (part != null)
             {
                 if (part.NodeType == ExpressionType.Call)
                 {
-                    MethodCallExpression methodExpression = (MethodCallExpression)part;
+                    var methodExpression = (MethodCallExpression)part;
 
                     if (!IsSingleArgumentIndexer(methodExpression))
                     {
                         break;
                     }
 
-                    nameParts.Push(
-                        GetIndexerInvocation(
-                            methodExpression.Arguments.Single(),
-                            expression.Parameters.ToArray()));
-
+                    nameParts.Push(GetIndexerInvocation(methodExpression.Arguments.Single(),expression.Parameters.ToArray()));
                     part = methodExpression.Object;
                 }
                 else if (part.NodeType == ExpressionType.ArrayIndex)
                 {
-                    BinaryExpression binaryExpression = (BinaryExpression)part;
-
-                    nameParts.Push(
-                        GetIndexerInvocation(
-                            binaryExpression.Right,
-                            expression.Parameters.ToArray()));
-
+                    var binaryExpression = (BinaryExpression)part;
+                    nameParts.Push(GetIndexerInvocation(binaryExpression.Right, expression.Parameters.ToArray()));
                     part = binaryExpression.Left;
                 }
                 else if (part.NodeType == ExpressionType.MemberAccess)
                 {
-                    MemberExpression memberExpressionPart = (MemberExpression)part;
+                    var memberExpressionPart = (MemberExpression)part;
                     nameParts.Push("." + memberExpressionPart.Member.Name);
                     part = memberExpressionPart.Expression;
                 }
@@ -90,8 +81,8 @@ namespace Nancy.ViewEngines.Razor.HtmlHelpers
         private static string GetIndexerInvocation(Expression expression, ParameterExpression[] parameters)
         {
             Expression converted = Expression.Convert(expression, typeof(object));
-            ParameterExpression fakeParameter = Expression.Parameter(typeof(object), null);
-            Expression<Func<object, object>> lambda = Expression.Lambda<Func<object, object>>(converted, fakeParameter);
+            var fakeParameter = Expression.Parameter(typeof(object), null);
+            var lambda = Expression.Lambda<Func<object, object>>(converted, fakeParameter);
             Func<object, object> func;
 
             try
@@ -100,13 +91,7 @@ namespace Nancy.ViewEngines.Razor.HtmlHelpers
             }
             catch (InvalidOperationException ex)
             {
-                throw new InvalidOperationException(
-                    String.Format(
-                        CultureInfo.CurrentCulture,
-                        "Nope!",
-                        expression,
-                        parameters[0].Name),
-                    ex);
+                throw new InvalidOperationException(String.Format(CultureInfo.CurrentCulture, "Nope!"), ex);
             }
 
             return "[" + Convert.ToString(func(null), CultureInfo.InvariantCulture) + "]";
@@ -114,17 +99,15 @@ namespace Nancy.ViewEngines.Razor.HtmlHelpers
 
         internal static bool IsSingleArgumentIndexer(Expression expression)
         {
-            MethodCallExpression methodExpression = expression as MethodCallExpression;
+            var methodExpression = expression as MethodCallExpression;
             if (methodExpression == null || methodExpression.Arguments.Count != 1)
             {
                 return false;
             }
 
-            return methodExpression.Method
-                .DeclaringType
-                .GetDefaultMembers()
-                .OfType<PropertyInfo>()
-                .Any(p => p.GetGetMethod() == methodExpression.Method);
+            return methodExpression.Method.DeclaringType.GetDefaultMembers()
+                    .OfType<PropertyInfo>()
+                    .Any(p => p.GetGetMethod() == methodExpression.Method);
         }
     }
 }
