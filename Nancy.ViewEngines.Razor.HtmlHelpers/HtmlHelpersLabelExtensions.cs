@@ -1,11 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using Nancy.Helpers;
 
 namespace Nancy.ViewEngines.Razor.HtmlHelpers
 {
     public static class HtmlHelpersLabelExtensions
     {
+        public static IHtmlString LabelFor<TModel, TProperty>(this HtmlHelpers<TModel> helper, Expression<Func<TModel, TProperty>> expression)
+        {
+            return Label(helper, ExpressionHelper.GetExpressionText(expression));
+        }
+
+        public static IHtmlString LabelFor<TModel, TProperty>(this HtmlHelpers<TModel> helper, Expression<Func<TModel, TProperty>> expression, object htmlAttributes)
+        {
+            return Label(helper, ExpressionHelper.GetExpressionText(expression), htmlAttributes);
+        }
+
+        public static IHtmlString LabelFor<TModel, TProperty>(this HtmlHelpers<TModel> helper, Expression<Func<TModel, TProperty>> expression, IDictionary<string, object> htmlAttributes)
+        {
+            return Label(helper, ExpressionHelper.GetExpressionText(expression), TypeHelper.ObjectToDictionary(htmlAttributes));
+        }
+
         public static IHtmlString Label<TModel>(this HtmlHelpers<TModel> helper, string labelText)
         {
             return Label(helper, labelText, null, null);

@@ -61,3 +61,18 @@ Hello world.
 <h1>CheckBoxFor</h1>
 
 @Html.CheckBox("CheckBoxName")
+
+<hr/>
+
+
+<h1>LabelFor</h1>
+
+@Html.LabelFor(x => x.AString)
+@Html.LabelFor(x => x.ABool)
+@Html.LabelFor(x => x.AnInt)
+@Html.LabelFor(x => x.EnumerableInts)
+@Html.LabelFor(x => x.ListOfStrings)
+@Html.LabelFor(x => x.NullableInt)
+
+@Html.LabelFor(x => x.AString, new { myAttribute = "isAwesome" })
+@Html.Label("TextBoxName", "TBValue")
