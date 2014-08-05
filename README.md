@@ -15,19 +15,21 @@ This is a rough port of the ASP.NET MVC HTML Helpers to NancyFx's Razor implemen
 
 Currently an un-tested hack-and-slash port of this code - I'll be working on that shortly - right now, it kind of "just about works" - and might help people.
 
+There will be packages on NuGet as soon as all the basic helpers and Begin/Endform are ported.
+
 ## Configuration
 
 Add:
 
-    ```c#
+```c#
     @using Nancy.ViewEngines.Razor.HtmlHelpers;
-    ```
+```
   
 to your Razor views. You can probably do a web/app.config namespace import too.
 
 ## Usage
 
-    ```c#
+```c#
     @using System.Collections.Generic
     @using Nancy.ViewEngines.Razor.HtmlHelpers
     @inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<Nancy.ViewEngines.Razor.HtmlHelpers.TestApp.Model>
@@ -75,7 +77,7 @@ to your Razor views. You can probably do a web/app.config namespace import too.
     @Html.ListBoxFor(x=>x.EnumerableInts, new List<SelectListItem>{new SelectListItem("some text", "value"), new SelectListItem("some text (this'll select)", "value", true)})
     @Html.ListBoxFor(x=>x.EnumerableInts, new List<SelectListItem>{new SelectListItem("some text", "value"), new SelectListItem("some text (this'll select)", "value", true)}, new {}, 1, false)
     @Html.DropDownListFor(x=>x.EnumerableInts, new List<SelectListItem>{new SelectListItem("some text", "value"), new SelectListItem("some text (this'll select)", "value", true)})
-    ```    
+```    
 
 ## Roadmap
 
