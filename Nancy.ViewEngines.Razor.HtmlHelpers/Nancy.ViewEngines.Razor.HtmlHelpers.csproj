@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="HtmlHelperInputExtensions.cs" />
     <Compile Include="HtmlHelpersCheckBoxExtensions.cs" />
+    <Compile Include="HtmlHelpersRadioExtensions.cs" />
     <Compile Include="HtmlHelpersSelectExtensions.cs" />
     <Compile Include="HtmlString.cs" />
     <Compile Include="HtmlHelpersLabelExtensions.cs" />
