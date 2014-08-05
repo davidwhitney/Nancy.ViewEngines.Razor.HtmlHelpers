@@ -1,21 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 
 namespace Nancy.ViewEngines.Razor.HtmlHelpers
 {
     public static class HtmlHelpersRadioExtensions
     {
-        public static IHtmlString RadioButton(string name, object value)
+        public static IHtmlString RadioButtonFor<TModel, TProperty>(this HtmlHelpers<TModel> helper, Expression<Func<TModel, TProperty>> expression, object value)
         {
-            return RadioButton(name, value, null);
+            return RadioButton(helper, ExpressionHelper.GetExpressionText(expression), value);
         }
 
-        public static IHtmlString RadioButton(string name, object value, object htmlAttributes)
+        public static IHtmlString RadioButton<TModel>(this HtmlHelpers<TModel> helper, string name, object value)
         {
-            return RadioButton(name, value, TypeHelper.ObjectToDictionary(htmlAttributes));
+            return RadioButton(helper, name, value, null);
         }
 
-        public static IHtmlString RadioButton(string name, object value, IDictionary<string, object> htmlAttributes)
+        public static IHtmlString RadioButtonFor<TModel, TProperty>(this HtmlHelpers<TModel> helper, Expression<Func<TModel, TProperty>> expression, object value, object htmlAttributes)
+        {
+            return RadioButton(helper, ExpressionHelper.GetExpressionText(expression), value, htmlAttributes);
+        }
+
+        public static IHtmlString RadioButton<TModel>(this HtmlHelpers<TModel> helper, string name, object value, object htmlAttributes)
+        {
+            return RadioButton(helper, name, value, TypeHelper.ObjectToDictionary(htmlAttributes));
+        }
+
+        public static IHtmlString RadioButtonFor<TModel, TProperty>(this HtmlHelpers<TModel> helper, Expression<Func<TModel, TProperty>> expression, object value, IDictionary<string, object> htmlAttributes)
+        {
+            return RadioButton(helper, ExpressionHelper.GetExpressionText(expression), value, htmlAttributes);
+        }
+
+        public static IHtmlString RadioButton<TModel>(this HtmlHelpers<TModel> helper, string name, object value, IDictionary<string, object> htmlAttributes)
         {
             if (String.IsNullOrEmpty(name))
             {
@@ -25,17 +41,32 @@ namespace Nancy.ViewEngines.Razor.HtmlHelpers
             return BuildRadioButton(name, value, null, htmlAttributes);
         }
 
-        public static IHtmlString RadioButton(string name, object value, bool isChecked)
+        public static IHtmlString RadioButtonFor<TModel, TProperty>(this HtmlHelpers<TModel> helper, Expression<Func<TModel, TProperty>> expression, object value, bool isChecked)
         {
-            return RadioButton(name, value, isChecked, null);
+            return RadioButton(helper, ExpressionHelper.GetExpressionText(expression), value, isChecked);
         }
 
-        public static IHtmlString RadioButton(string name, object value, bool isChecked, object htmlAttributes)
+        public static IHtmlString RadioButton<TModel>(this HtmlHelpers<TModel> helper, string name, object value, bool isChecked)
         {
-            return RadioButton(name, value, isChecked, TypeHelper.ObjectToDictionary(htmlAttributes));
+            return RadioButton(helper, name, value, isChecked, null);
         }
 
-        public static IHtmlString RadioButton(string name, object value, bool isChecked, IDictionary<string, object> htmlAttributes)
+        public static IHtmlString RadioButtonFor<TModel, TProperty>(this HtmlHelpers<TModel> helper, Expression<Func<TModel, TProperty>> expression, object value, bool isChecked, object htmlAttributes)
+        {
+            return RadioButton(helper, ExpressionHelper.GetExpressionText(expression), value, isChecked, htmlAttributes);
+        }
+
+        public static IHtmlString RadioButton<TModel>(this HtmlHelpers<TModel> helper, string name, object value, bool isChecked, object htmlAttributes)
+        {
+            return RadioButton(helper, name, value, isChecked, TypeHelper.ObjectToDictionary(htmlAttributes));
+        }
+
+        public static IHtmlString RadioButtonFor<TModel, TProperty>(this HtmlHelpers<TModel> helper, Expression<Func<TModel, TProperty>> expression, object value, bool isChecked, IDictionary<string, object> htmlAttributes)
+        {
+            return RadioButton(helper, ExpressionHelper.GetExpressionText(expression), value, isChecked, htmlAttributes);
+        }
+
+        public static IHtmlString RadioButton<TModel>(this HtmlHelpers<TModel> helper, string name, object value, bool isChecked, IDictionary<string, object> htmlAttributes)
         {
             if (name == null)
             {
