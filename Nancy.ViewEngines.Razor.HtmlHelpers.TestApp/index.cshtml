@@ -1,4 +1,5 @@
-﻿@using Nancy.ViewEngines.Razor.HtmlHelpers
+﻿@using System.Collections.Generic
+@using Nancy.ViewEngines.Razor.HtmlHelpers
 @inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<Nancy.ViewEngines.Razor.HtmlHelpers.TestApp.Model>
 @{
     ViewBag.Title = "Home";
@@ -80,3 +81,13 @@ Hello world.
 
 @Html.LabelFor(x => x.AString, new { myAttribute = "isAwesome" })
 @Html.Label("TextBoxName", "TBValue")
+
+<hr/>
+
+<h1>Select boxes</h1>
+
+@Html.ListBoxFor(x=>x.EnumerableInts, new List<SelectListItem>{new SelectListItem("some text", "value"), new SelectListItem("some text (this'll select)", "value", true)})
+@Html.ListBoxFor(x=>x.EnumerableInts, new List<SelectListItem>{new SelectListItem("some text", "value"), new SelectListItem("some text (this'll select)", "value", true)}, new {}, 1, false)
+
+@Html.DropDownListFor(x=>x.EnumerableInts, new List<SelectListItem>{new SelectListItem("some text", "value"), new SelectListItem("some text (this'll select)", "value", true)})
+

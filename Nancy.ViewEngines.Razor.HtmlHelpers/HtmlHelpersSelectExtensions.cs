@@ -155,8 +155,7 @@ namespace Nancy.ViewEngines.Razor.HtmlHelpers
 
             if (selectedValues != null)
             {
-                IEnumerable values = (allowMultiple) ? ConvertTo(selectedValues, typeof(string[])) as string[]
-                                         : new[] { ConvertTo(selectedValues, typeof(string)) };
+                IEnumerable values = (allowMultiple) ? ConvertTo(selectedValues) : new[] {selectedValues.ToString()};
 
                 var newSelectList = new List<SelectListItem>();
                 var selectedValueSet = new HashSet<string>(from object value in values
@@ -215,9 +214,19 @@ namespace Nancy.ViewEngines.Razor.HtmlHelpers
             return tagBuilder.ToHtmlString(TagRenderMode.Normal);
         }
 
-        private static object ConvertTo(object selectedValues, Type p1)
+        private static string[] ConvertTo(object selectedValues)
         {
-            throw new NotImplementedException();
+            if (selectedValues is string)
+            {
+                return new []{(string)selectedValues};
+            }
+
+            if (!(selectedValues is IEnumerable))
+            {
+                return new string[0];
+            }
+
+            return (from object item in (IEnumerable) selectedValues select item.ToString()).ToArray();
         }
 
         public static IHtmlString DropDownListFor<TModel, TProperty>(this HtmlHelpers<TModel> helper, Expression<Func<TModel, TProperty>> expression, IEnumerable<SelectListItem> selectList)
@@ -317,7 +326,7 @@ namespace Nancy.ViewEngines.Razor.HtmlHelpers
             {
                 selectedValue = selectedValue; //?? ModelState[name].Value;
             }
-            selectedValue = ConvertTo(selectedValue, typeof(string));
+            selectedValue = Convert.ToString(selectedValue);
 
             if (selectedValue != null)
             {
@@ -391,6 +400,13 @@ namespace Nancy.ViewEngines.Razor.HtmlHelpers
     {
         public SelectListItem()
         {
+        }
+
+        public SelectListItem(string text, string value, bool selected = false)
+        {
+            Text = text;
+            Value = value;
+            Selected = selected;
         }
 
         public SelectListItem(SelectListItem item)
