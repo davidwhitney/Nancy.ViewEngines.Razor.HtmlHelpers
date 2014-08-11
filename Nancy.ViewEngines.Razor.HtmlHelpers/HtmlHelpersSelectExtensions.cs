@@ -338,6 +338,17 @@ namespace Nancy.ViewEngines.Razor.HtmlHelpers
             return BuildDropDownList(name, null, items, null, htmlAttributes);
         }
 
+        public static IHtmlString DropDownList<TModel>(this HtmlHelpers<TModel> helper, string name, Enum options, Enum currentValue, object htmlAttributes)
+        {
+            return DropDownList(helper, name, options, currentValue, TypeHelper.ObjectToDictionary(htmlAttributes));
+        }
+
+        public static IHtmlString DropDownList<TModel>(this HtmlHelpers<TModel> helper, string name, Enum options, Enum currentValue, IDictionary<string, object> htmlAttributes)
+        {
+            var items = currentValue.ToSelectListItems(currentValue).ToList();
+            return BuildDropDownList(name, null, items, null, htmlAttributes);
+        }
+
         private static IHtmlString BuildDropDownList(string name, string defaultOption, IEnumerable<SelectListItem> selectList,
                                               object selectedValue, IDictionary<string, object> htmlAttributes)
         {
