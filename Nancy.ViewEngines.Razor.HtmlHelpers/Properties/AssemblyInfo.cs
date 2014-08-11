@@ -1,6 +1,5 @@
 ﻿using System.Reflection;
 using System.Runtime.InteropServices;
-
 [assembly: AssemblyTitle("Nancy.ViewEngines.Razor.HtmlHelpers")]
 [assembly: AssemblyDescription("HTML Helpers for #NancyFx's Razor implementation")]
 [assembly: AssemblyConfiguration("")]
