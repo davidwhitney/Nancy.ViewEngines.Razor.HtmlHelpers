@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+	<title>$id$</title>
+    <authors>David Whitney</authors>
+    <owners>$author$</owners>
+    <projectUrl>https://github.com/davidwhitney/Nancy.ViewEngines.Razor.HtmlHelpers</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+	<summary>HTML Helpers for #NancyFx's Razor implementation.</summary>
+    <description>$description$</description>
+    <copyright>Copyright 2013</copyright>
+    <tags>nancyfx nancy razor html helpers mvc</tags>
+	<licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
+  </metadata>
+</package>
