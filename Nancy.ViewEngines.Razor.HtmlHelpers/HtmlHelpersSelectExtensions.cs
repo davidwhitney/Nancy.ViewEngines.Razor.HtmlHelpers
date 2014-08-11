@@ -325,7 +325,7 @@ namespace Nancy.ViewEngines.Razor.HtmlHelpers
 
         public static IHtmlString DropDownListFor<TModel, TProperty>(this HtmlHelpers<TModel> helper, Expression<Func<TModel, TProperty>> expression, object htmlAttributes)
         {
-            return DropDownListFor(helper, expression, TypeHelper.ObjectToDictionary(new {}));
+            return DropDownListFor(helper, expression, TypeHelper.ObjectToDictionary(htmlAttributes));
         }
 
         public static IHtmlString DropDownListFor<TModel, TProperty>(this HtmlHelpers<TModel> helper, Expression<Func<TModel, TProperty>> expression, IDictionary<string, object> htmlAttributes)
