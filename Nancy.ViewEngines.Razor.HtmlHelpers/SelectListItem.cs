@@ -1,4 +1,4 @@
-namespace Nancy.ViewEngines.Razor.HtmlHelpers
+namespace Nancy.ViewEngines.Razor.HtmlHelpersUnofficial
 {
     public class SelectListItem
     {

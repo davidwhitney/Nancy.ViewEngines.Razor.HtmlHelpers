@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Nancy.Hosting.Self;
 
-namespace Nancy.ViewEngines.Razor.HtmlHelpers.TestApp
+namespace Nancy.ViewEngines.Razor.HtmlHelpersUnofficial.TestApp
 {
     public class Program
     {

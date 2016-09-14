@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq.Expressions;
 using Nancy.Helpers;
+using Nancy.ViewEngines.Razor.HtmlHelpersUnofficial.MvcBits;
 
-namespace Nancy.ViewEngines.Razor.HtmlHelpers
+namespace Nancy.ViewEngines.Razor.HtmlHelpersUnofficial
 {
     public static class HtmlHelpersTextAreaExtensions
     {

@@ -3,7 +3,7 @@ using System.Collections.Concurrent;
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace Nancy.ViewEngines.Razor.HtmlHelpers
+namespace Nancy.ViewEngines.Razor.HtmlHelpersUnofficial.MvcBits
 {
     internal static class CachedExpressionCompiler
     {

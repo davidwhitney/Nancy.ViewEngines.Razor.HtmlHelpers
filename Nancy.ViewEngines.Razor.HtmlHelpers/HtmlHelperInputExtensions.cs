@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Data.Linq;
 using System.Linq.Expressions;
+using Nancy.ViewEngines.Razor.HtmlHelpersUnofficial.MvcBits;
 
-namespace Nancy.ViewEngines.Razor.HtmlHelpers
+namespace Nancy.ViewEngines.Razor.HtmlHelpersUnofficial
 {
     public static class HtmlHelperInputExtensions
     {
